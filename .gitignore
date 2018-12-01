@@ -1,3 +1,9 @@
+# GitHub Token
+token.txt
+
+# Test Scripts
+test_*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
