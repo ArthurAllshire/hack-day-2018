@@ -10,17 +10,17 @@ class Data:
         self.gh = GitHub()
 
     def get_frequency(self, repo_owner, repo_name):
-        times, commits, frame_rate = self.gh.get_commits(repo_owner)
+        times, commits, frame_rate = self.gh.get_commits(repo_owner, repo_name)
 
         freq = np.fft.fftfreq(len(commits)) * frame_rate
 
         power_f_domain = np.fft.fft(commits)
-        power = f_domain.real
+        power = power_f_domain.real
 
         abs_data = {}
         # make all amplitutudes and frequencies positive
-        for i in range(len(freq_raw)):
-            abs_freq = abs(freq_raw[i])
+        for i in range(len(freq)):
+            abs_freq = abs(freq[i])
             if not abs_freq in abs_data:
                 abs_data[abs_freq] = abs(power[i])
             else:
