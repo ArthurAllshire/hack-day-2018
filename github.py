@@ -18,13 +18,15 @@ class GitHub:
         r = requests.get(url, headers=self.headers)
         return r.json()
 
-    def get_commits(self, owner, repo):
-        url = GitHub.API_URL + f"/repos/{owner}/{repo}/commits"
+    def get_commits(self, repo_owner, repo_name):
+        url = GitHub.API_URL + f"/repos/{repo_owner}/{repo_name}/commits"
         commits_list_raw = self.request(url)
 
-        # return a list of times denoting the endpoins of the 'bins'
+        # return a list of times denoting the center of the 'bins'
         # of commits / additions / deletions, along with a list of the
         # number in each bin
-        times = [10e9, 10e9 + 150]
-        data = [150]
-        return times, data
+        # times are in seconds since unix epoch
+        times = [10e9, 1e9+10]
+        data = [150, 140]
+        frame_rate = 24 # bins / day
+        return times, data, frame_rate
