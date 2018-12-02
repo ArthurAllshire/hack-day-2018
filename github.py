@@ -12,7 +12,7 @@ class GitHub:
     """
     API_URL = "https://api.github.com"
     HOUR = 3600 # sec
-    INTERVAL_LENGTH = HOUR
+    INTERVAL_LENGTH = HOUR * 6
     API_TIME_STR = "%Y-%m-%dT%H:%M:%S"
     MAX_PAGES = 1000
 

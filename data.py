@@ -4,15 +4,13 @@ from github import GitHub
 
 class Data:
 
-    DEFAULT_REPO = {'owner':'tensorflow', 'repo': 'tensorflow'}
-
     def __init__(self):
         self.gh = GitHub()
 
     def get_frequency(self, repo_owner, repo_name):
         times, commits, frame_rate = self.gh.get_commits(repo_owner, repo_name)
 
-        freq = np.fft.fftfreq(len(commits)) * frame_rate
+        freq = np.fft.fftfreq(len(commits))*frame_rate
 
         power_f_domain = np.fft.fft(commits)
         power = power_f_domain.real
@@ -28,7 +26,8 @@ class Data:
         # construct final frequency amplitude lists
         frequencies, amplitudes = [], []
         for freq in abs_data.keys():
-            frequencies.append(freq)
+            frequencies.append(1/freq)
             amplitudes.append(abs_data[freq])
 
         return frequencies, amplitudes
+        # return times,commits
